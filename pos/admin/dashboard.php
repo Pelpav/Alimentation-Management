@@ -52,7 +52,7 @@ require_once('partials/_analytics.php');
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Products</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Produits</h5>
                       <span class="h2 font-weight-bold mb-0"><?php echo $products; ?></span>
                     </div>
                     <div class="col-auto">
@@ -70,7 +70,7 @@ require_once('partials/_analytics.php');
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Orders</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Commandes</h5>
                       <span class="h2 font-weight-bold mb-0"><?php echo $orders; ?></span>
                     </div>
                     <div class="col-auto">
@@ -88,7 +88,7 @@ require_once('partials/_analytics.php');
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Ventes</h5>
                       <span class="h2 font-weight-bold mb-0">$<?php echo $sales; ?></span>
                     </div>
                     <div class="col-auto">
@@ -113,10 +113,10 @@ require_once('partials/_analytics.php');
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Recent Orders</h3>
+                  <h3 class="mb-0">Recent Commandes</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="orders_reports.php" class="btn btn-sm btn-primary">See all</a>
+                  <a href="orders_reports.php" class="btn btn-sm btn-primary">Voir tout</a>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ require_once('partials/_analytics.php');
                       <td class="text-success"><?php echo $order->prod_qty; ?></td>
                       <td>$<?php echo $total; ?></td>
                       <td><?php if ($order->order_status == '') {
-                            echo "<span class='badge badge-danger'>Not Paid</span>";
+                            echo "<span class='badge badge-danger'>Not Payé</span>";
                           } else {
                             echo "<span class='badge badge-success'>$order->order_status</span>";
                           } ?></td>
@@ -172,10 +172,10 @@ require_once('partials/_analytics.php');
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Recent Payments</h3>
+                  <h3 class="mb-0">Recent Paiements</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="payments_reports.php" class="btn btn-sm btn-primary">See all</a>
+                  <a href="payments_reports.php" class="btn btn-sm btn-primary">Voir tout</a>
                 </div>
               </div>
             </div>

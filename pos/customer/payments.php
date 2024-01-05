@@ -81,7 +81,7 @@ require_once('partials/_head.php');
                                             <td>$ <?php echo $total; ?></td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                                             <td>
-                                                <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Paid">
+                                                <a href="pay_order.php?order_code=<?php echo $order->order_code;?>&customer_id=<?php echo $order->customer_id;?>&order_status=Payé">
                                                     <button class="btn btn-sm btn-success">
                                                         <i class="fas fa-handshake"></i>
                                                         Pay Order

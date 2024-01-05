@@ -41,8 +41,8 @@ require_once('partials/_head.php');
                                         <th class="text-success" scope="col">Payment Code</th>
                                         <th scope="col">Payment Method</th>
                                         <th class="text-success" scope="col">Order Code</th>
-                                        <th scope="col">Amount Paid</th>
-                                        <th class="text-success" scope="col">Date Paid</th>
+                                        <th scope="col">Amount Payé</th>
+                                        <th class="text-success" scope="col">Date Payé</th>
                                     </tr>
                                 </thead>
                                 <tbody>

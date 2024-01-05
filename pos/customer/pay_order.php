@@ -10,7 +10,7 @@ if (isset($_POST['pay'])) {
   //Prevent Posting Blank Values
   if (empty($_POST["pay_code"]) || empty($_POST["pay_amt"]) || empty($_POST['pay_method'])) {
     $err = "Blank Values Not Accepted";
-    //Perform Regex On Payments
+    //Perform Regex On Paiements
     
   } else {
 
@@ -51,7 +51,7 @@ if (isset($_POST['pay'])) {
           $upStmt->execute();
           //declare a varible which will be passed to alert function
           if ($upStmt && $postStmt) {
-              $success = "Paid" && header("refresh:1; url=payments_reports.php");
+              $success = "Payé" && header("refresh:1; url=payments_reports.php");
           } else {
               $err = "Please Try Again Or Try Later";
           }

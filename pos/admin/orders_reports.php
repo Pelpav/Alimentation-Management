@@ -32,7 +32,7 @@ require_once('partials/_head.php');
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            Orders Records
+                            Commandes Records
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -66,7 +66,7 @@ require_once('partials/_head.php');
                                             <td class="text-success"><?php echo $order->prod_qty; ?></td>
                                             <td>$ <?php echo $total; ?></td>
                                             <td><?php if ($order->order_status == '') {
-                                                    echo "<span class='badge badge-danger'>Not Paid</span>";
+                                                    echo "<span class='badge badge-danger'>Not Payé</span>";
                                                 } else {
                                                     echo "<span class='badge badge-success'>$order->order_status</span>";
                                                 } ?></td>

@@ -99,7 +99,7 @@ while ($customer = $res->fetch_object()) {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="payments.php">
-              <i class="ni ni-credit-card text-primary"></i> Payments
+              <i class="ni ni-credit-card text-primary"></i> Paiements
             </a>
           </li>
         </ul>
@@ -111,12 +111,12 @@ while ($customer = $res->fetch_object()) {
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
             <a class="nav-link" href="orders_reports.php">
-              <i class="fas fa-shopping-basket"></i> My Orders
+              <i class="fas fa-shopping-basket"></i> My Commandes
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="payments_reports.php">
-              <i class="fas fa-funnel-dollar"></i> My Payments
+              <i class="fas fa-funnel-dollar"></i> My Paiements
             </a>
           </li>
         </ul>
