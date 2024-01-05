@@ -14,10 +14,11 @@
     <style>
         html,
         body {
-            background-color: #000;
-            color: #636b6f;
+            background: url("pos/admin/assets/img/theme/acceuil.jpg") no-repeat;
+            background-color: black;
+            color: white;
             font-family: 'Nunito', sans-serif;
-            font-weight: 200;
+            font-weight: 500;
             height: 100vh;
             margin: 0;
         }
@@ -44,8 +45,27 @@
 
         .content {
             text-align: center;
+            width: 700px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
         }
 
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* La dernière valeur (0.5) représente l'opacité (de 0 à 1) */
+                backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+}
+        
         .title {
             font-size: 84px;
         }
@@ -67,7 +87,8 @@
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
+    <div class="overlay">
+        <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
                 Gestion Alimentation
@@ -79,6 +100,7 @@
                 <a href="pos/customer">Connexion Cients</a>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
