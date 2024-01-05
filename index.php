@@ -80,6 +80,10 @@
             text-transform: uppercase;
         }
 
+        .link>a:hover{
+            color: white;
+        }
+
         .m-b-md {
             margin-bottom: 30px;
         }
