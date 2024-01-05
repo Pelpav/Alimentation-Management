@@ -3,7 +3,7 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
-//Update Profile
+//Modifier Profile
 if (isset($_POST['ChangeProfile'])) {
   $admin_id = $_SESSION['admin_id'];
   $admin_name = $_POST['admin_name'];
@@ -168,7 +168,7 @@ require_once('partials/_head.php');
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-username">User Name</label>
+                          <label class="form-control-label" for="input-username">User Nom</label>
                           <input type="text" name="admin_name" value="<?php echo $admin->admin_name; ?>" id="input-username" class="form-control form-control-alternative" ">
                       </div>
                     </div>

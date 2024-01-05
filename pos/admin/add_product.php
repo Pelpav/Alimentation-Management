@@ -26,7 +26,7 @@ if (isset($_POST['addProduct'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Product Added" && header("refresh:1; url=add_product.php");
+      $success = "Produit Added" && header("refresh:1; url=add_product.php");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -67,37 +67,37 @@ require_once('partials/_head.php');
               <form method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Product Name</label>
+                    <label>Produit Nom</label>
                     <input type="text" name="prod_name" class="form-control">
                     <input type="hidden" name="prod_id" value="<?php echo $prod_id; ?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Product Code</label>
+                    <label>Produit Code</label>
                     <input type="text" name="prod_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Product Image</label>
+                    <label>Produit Image</label>
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
                   </div>
                   <div class="col-md-6">
-                    <label>Product Price</label>
+                    <label>Produit Price</label>
                     <input type="text" name="prod_price" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-12">
-                    <label>Product Description</label>
+                    <label>Produit Description</label>
                     <textarea rows="5" name="prod_desc" class="form-control" value=""></textarea>
                   </div>
                 </div>
                 <br>
                 <div class="form-row">
                   <div class="col-md-6">
-                    <input type="submit" name="addProduct" value="Add Product" class="btn btn-success" value="">
+                    <input type="submit" name="addProduct" value="Add Produit" class="btn btn-success" value="">
                   </div>
                 </div>
               </form>

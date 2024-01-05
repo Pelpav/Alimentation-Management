@@ -3,7 +3,7 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
-//Delete Staff
+//Supprimer Staff
 if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
   $adn = "DELETE FROM  rpos_staff  WHERE  staff_id = ?";
@@ -52,8 +52,8 @@ require_once('partials/_head.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Staff Number</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Numéro du Personnel</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Email</th>
                     <th scope="col">Actions</th>
                   </tr>
@@ -74,14 +74,14 @@ require_once('partials/_head.php');
                         <a href="hrm.php?delete=<?php echo $staff->staff_id; ?>">
                           <button class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i>
-                            Delete
+                            Supprimer
                           </button>
                         </a>
 
                         <a href="update_staff.php?update=<?php echo $staff->staff_id; ?>">
                           <button class="btn btn-sm btn-primary">
                             <i class="fas fa-user-edit"></i>
-                            Update
+                            Modifier
                           </button>
                         </a>
                       </td>

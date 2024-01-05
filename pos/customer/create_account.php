@@ -21,7 +21,7 @@ if (isset($_POST['addCustomer'])) {
         $postStmt->execute();
         //declare a varible which will be passed to alert function
         if ($postStmt) {
-            $success = "Customer Account Created" && header("refresh:1; url=index.php");
+            $success = "Client Account Created" && header("refresh:1; url=index.php");
         } else {
             $err = "Please Try Again Or Try Later";
         }
@@ -56,7 +56,7 @@ require_once('config/code-generator.php');
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
-                                        <input class="form-control" required name="customer_name" placeholder="Full Name" type="text">
+                                        <input class="form-control" required name="customer_name" placeholder="Full Nom" type="text">
                                         <input class="form-control" value="<?php echo $cus_id;?>" required name="customer_id"  type="hidden">
                                     </div>
                                 </div>

@@ -26,7 +26,7 @@ if (isset($_POST['UpdateProduct'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Product Updated" && header("refresh:1; url=products.php");
+      $success = "Produit Updated" && header("refresh:1; url=products.php");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -73,36 +73,36 @@ require_once('partials/_head.php');
                 <form method="POST" enctype="multipart/form-data">
                   <div class="form-row">
                     <div class="col-md-6">
-                      <label>Product Name</label>
+                      <label>Produit Nom</label>
                       <input type="text" value="<?php echo $prod->prod_name; ?>" name="prod_name" class="form-control">
                     </div>
                     <div class="col-md-6">
-                      <label>Product Code</label>
+                      <label>Produit Code</label>
                       <input type="text" name="prod_code" value="<?php echo $prod->prod_code; ?>" class="form-control" value="">
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                     <div class="col-md-6">
-                      <label>Product Image</label>
+                      <label>Produit Image</label>
                       <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="<?php echo $prod_img; ?>">
                     </div>
                     <div class="col-md-6">
-                      <label>Product Price</label>
+                      <label>Produit Price</label>
                       <input type="text" name="prod_price" class="form-control" value="<?php echo $prod->prod_price; ?>">
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                     <div class="col-md-12">
-                      <label>Product Description</label>
+                      <label>Produit Description</label>
                       <textarea rows="5" name="prod_desc" class="form-control" value=""><?php echo $prod->prod_desc; ?></textarea>
                     </div>
                   </div>
                   <br>
                   <div class="form-row">
                     <div class="col-md-6">
-                      <input type="submit" name="UpdateProduct" value="Update Product" class="btn btn-success" value="">
+                      <input type="submit" name="UpdateProduct" value="Update Produit" class="btn btn-success" value="">
                     </div>
                   </div>
                 </form>

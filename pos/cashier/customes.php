@@ -3,7 +3,7 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
-//Delete Staff
+//Supprimer Staff
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $adn = "DELETE FROM  rpos_customers  WHERE  customer_id = ?";
@@ -48,14 +48,14 @@ require_once('partials/_head.php');
                         <div class="card-header border-0">
                             <a href="add_customer.php" class="btn btn-outline-success">
                                 <i class="fas fa-user-plus"></i>
-                                Add New Customer
+                                Add New Client
                             </a>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Full Nom</th>
                                         <th scope="col">Contact Number</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Action</th>
@@ -77,7 +77,7 @@ require_once('partials/_head.php');
                                                 <a href="update_customer.php?update=<?php echo $cust->customer_id; ?>">
                                                     <button class="btn btn-sm btn-primary">
                                                         <i class="fas fa-user-edit"></i>
-                                                        Update
+                                                        Modifier
                                                     </button>
                                                 </a>
                                             </td>

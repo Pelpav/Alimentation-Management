@@ -4,7 +4,7 @@
 * Argon Dashboard - v1.0.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Produit Page: https://www.creative-tim.com/Produit/argon-dashboard
 * Copyright 2018 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
 
@@ -840,18 +840,18 @@ var Charts = (function () {
       // Add options
       pushOptions($chart, options);
 
-      // Update chart
+      // Modifier chart
       $chart.update();
     } else {
       // Remove options
       popOptions($chart, options);
 
-      // Update chart
+      // Modifier chart
       $chart.update();
     }
   }
 
-  // Update options
+  // Modifier options
   function updateOptions(elem) {
     var options = elem.data("update");
     var $target = $(elem.data("target"));
@@ -863,7 +863,7 @@ var Charts = (function () {
     // Toggle ticks
     toggleTicks(elem, $chart);
 
-    // Update chart
+    // Modifier chart
     $chart.update();
   }
 
@@ -876,14 +876,14 @@ var Charts = (function () {
       var prefix = elem.data("prefix") ? elem.data("prefix") : "";
       var suffix = elem.data("suffix") ? elem.data("suffix") : "";
 
-      // Update ticks
+      // Modifier ticks
       $chart.options.scales.yAxes[0].ticks.callback = function (value) {
         if (!(value % 10)) {
           return prefix + value + suffix;
         }
       };
 
-      // Update tooltips
+      // Modifier tooltips
       $chart.options.tooltips.callbacks.label = function (item, data) {
         var label = data.datasets[item.datasetIndex].label || "";
         var yLabel = item.yLabel;

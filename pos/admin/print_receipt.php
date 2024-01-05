@@ -77,7 +77,7 @@ while ($order = $res->fetch_object()) {
                                 <tr>
                                     <th>Item</th>
                                     <th>Quantity</th>
-                                    <th class="text-center">Unit Price</th>
+                                    <th class="text-center">Prix Unitaire</th>
                                     <th class="text-center">Total</th>
                                 </tr>
                             </thead>

@@ -69,7 +69,7 @@ require_once('partials/_head.php');
                                 <div class="form-row">
 
                                     <div class="col-md-6">
-                                        <label>Customer Name</label>
+                                        <label>Client Nom</label>
                                         <?php
                                         //Load All Clients
                                         $customer_id = $_SESSION['customer_id'];
@@ -84,7 +84,7 @@ require_once('partials/_head.php');
                                         <input type="hidden" name="order_id" value="<?php echo $orderid; ?>" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Order Code</label>
+                                        <label>Code De Paiement</label>
                                         <input type="text" readonly name="order_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
                                     </div>
                                 </div>
@@ -99,11 +99,11 @@ require_once('partials/_head.php');
                                 ?>
                                     <div class="form-row">
                                         <div class="col-md-6">
-                                            <label>Product Price ($)</label>
+                                            <label>Produit Price ($)</label>
                                             <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Product Quantity</label>
+                                            <label>Produit Quantity</label>
                                             <input type="text" name="prod_qty" class="form-control" value="">
                                         </div>
                                     </div>

@@ -32,17 +32,17 @@ require_once('partials/_head.php');
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            Payment Reports
+                            Rapport de Ventes
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-success" scope="col">Payment Code</th>
-                                        <th scope="col">Payment Method</th>
-                                        <th class="text-success" scope="col">Order Code</th>
-                                        <th scope="col">Amount Payé</th>
-                                        <th class="text-success" scope="col">Date Payé</th>
+                                        <th class="text-success" scope="col">Code de Paiement</th>
+                                        <th scope="col">Méthode de Paiement</th>
+                                        <th class="text-success" scope="col">Code De Paiement</th>
+                                        <th scope="col">Montant payé</th>
+                                        <th class="text-success" scope="col">Date de paiement</th>
                                     </tr>
                                 </thead>
                                 <tbody>

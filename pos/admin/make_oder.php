@@ -69,9 +69,9 @@ require_once('partials/_head.php');
                 <div class="form-row">
 
                   <div class="col-md-4">
-                    <label>Customer Name</label>
-                    <select class="form-control" name="customer_name" id="custName" onChange="getCustomer(this.value)">
-                      <option value="">Select Customer Name</option>
+                    <label>Client Nom</label>
+                    <select class="form-control" name="customer_name" id="custNom" onChange="getCustomer(this.value)">
+                      <option value="">Select Client Nom</option>
                       <?php
                       //Load All Clients
                       $ret = "SELECT * FROM  rpos_customers ";
@@ -87,12 +87,12 @@ require_once('partials/_head.php');
                   </div>
 
                   <div class="col-md-4">
-                    <label>Customer ID</label>
+                    <label>Client ID</label>
                     <input type="text" name="customer_id" readonly id="customerID" class="form-control">
                   </div>
 
                   <div class="col-md-4">
-                    <label>Order Code</label>
+                    <label>Code De Paiement</label>
                     <input type="text" name="order_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
                   </div>
                 </div>
@@ -107,11 +107,11 @@ require_once('partials/_head.php');
                 ?>
                   <div class="form-row">
                     <div class="col-md-6">
-                      <label>Product Price ($)</label>
+                      <label>Produit Price ($)</label>
                       <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
                     </div>
                     <div class="col-md-6">
-                      <label>Product Quantity</label>
+                      <label>Produit Quantity</label>
                       <input type="text" name="prod_qty" class="form-control" value="">
                     </div>
                   </div>

@@ -5,13 +5,13 @@ $ret = "SELECT * FROM  rpos_customers  WHERE customer_id = '$customer_id'";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute();
 $res = $stmt->get_result();
-while ($customer = $res->fetch_object()) {
+while ($Client = $res->fetch_object()) {
 
 ?>
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php"><?php echo $customer->customer_name; ?> Dashboard</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php"><?php echo $Client->customer_name; ?> Dashboard</a>
             <!-- Form -->
 
             <!-- User -->
@@ -23,7 +23,7 @@ while ($customer = $res->fetch_object()) {
                                 <img alt="Image placeholder" src="../admin/assets/img/theme/user-a-min.png">
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold"><?php echo $customer->customer_name; ?></span>
+                                <span class="mb-0 text-sm  font-weight-bold"><?php echo $Client->customer_name; ?></span>
                             </div>
                         </div>
                     </a>

@@ -5,7 +5,7 @@ include('config/checklogin.php');
 include('config/code-generator.php');
 
 check_login();
-//Add Customer
+//Add Client
 if (isset($_POST['updateCustomer'])) {
   //Prevent Posting Blank Values
   if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email']) || empty($_POST['customer_password'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['updateCustomer'])) {
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Customer Added" && header("refresh:1; url=customes.php");
+      $success = "Client Added" && header("refresh:1; url=customes.php");
     } else {
       $err = "Please Try Again Or Try Later";
     }
@@ -72,29 +72,29 @@ require_once('partials/_head.php');
                 <form method="POST">
                   <div class="form-row">
                     <div class="col-md-6">
-                      <label>Customer Name</label>
+                      <label>Client Nom</label>
                       <input type="text" name="customer_name" value="<?php echo $cust->customer_name; ?>" class="form-control">
                     </div>
                     <div class="col-md-6">
-                      <label>Customer Phone Number</label>
+                      <label>Client Phone Number</label>
                       <input type="text" name="customer_phoneno" value="<?php echo $cust->customer_phoneno; ?>" class="form-control" value="">
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                     <div class="col-md-6">
-                      <label>Customer Email</label>
+                      <label>Client Email</label>
                       <input type="email" name="customer_email" value="<?php echo $cust->customer_email; ?>" class="form-control" value="">
                     </div>
                     <div class="col-md-6">
-                      <label>Customer Password</label>
+                      <label>Client Password</label>
                       <input type="password" name="customer_password" class="form-control" value="">
                     </div>
                   </div>
                   <br>
                   <div class="form-row">
                     <div class="col-md-6">
-                      <input type="submit" name="updateCustomer" value="Update Customer" class="btn btn-success" value="">
+                      <input type="submit" name="updateCustomer" value="Modifier Client" class="btn btn-success" value="">
                     </div>
                   </div>
                 </form>

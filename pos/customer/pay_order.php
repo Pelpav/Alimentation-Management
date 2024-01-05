@@ -18,11 +18,11 @@ if (isset($_POST['pay'])) {
 
       if(strlen($pay_Code) < 10 )
       {
-        $err = "Payment Code Verification Failed, Please Try Again";
+        $err = "Code de Paiement Verification Failed, Please Try Again";
       }
       elseif(strlen($pay_Code) > 10)
       {
-        $err = "Payment Code Verification Failed, Please Try Again";
+        $err = "Code de Paiement Verification Failed, Please Try Again";
       }
       
       else
@@ -105,18 +105,18 @@ require_once('partials/_head.php');
                     <input type="text" name="pay_id" readonly value="<?php echo $payid;?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Payment Code</label><small class="text-danger"> Type 10 Digits Alpha-Code If Payment Method Is In Cash</small>
+                    <label>Code de Paiement</label><small class="text-danger"> Type 10 Digits Alpha-Code If Méthode de Paiement Is In Cash</small>
                     <input type="text" limit="11" name="pay_code" placeholder="<?php echo $mpesaCode; ?>" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Amount ($)</label>
+                    <label>Montant ($)</label>
                     <input type="text" name="pay_amt" readonly value="<?php echo $total;?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Payment Method</label>
+                    <label>Méthode de Paiement</label>
                     <select class="form-control" name="pay_method">
                         <option selected>Cash</option>
                         <option>Paypal</option>

@@ -5,7 +5,7 @@ $ret = "SELECT * FROM  rpos_customers  WHERE customer_id = '$customer_id'";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute();
 $res = $stmt->get_result();
-while ($customer = $res->fetch_object()) {
+while ($Client = $res->fetch_object()) {
 
 ?>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">

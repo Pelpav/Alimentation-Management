@@ -65,11 +65,11 @@ require_once('partials/_head.php');
               <form method="POST">
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Staff Number</label>
+                    <label>Numéro du Personnel</label>
                     <input type="text" name="staff_number" class="form-control" value="<?php echo $alpha; ?>-<?php echo $beta; ?>">
                   </div>
                   <div class="col-md-6">
-                    <label>Staff Name</label>
+                    <label>Staff Nom</label>
                     <input type="text" name="staff_name" class="form-control" value="">
                   </div>
                 </div>

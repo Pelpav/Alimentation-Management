@@ -33,15 +33,15 @@ require_once('partials/_head.php');
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              Select On Any Product To Make An Order
+              Select On Any Produit To Make An Order
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">Product Code</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Produit Code</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Price</th>
                     <th scope="col">Action</th>
                   </tr>

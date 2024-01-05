@@ -4,8 +4,8 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 if (isset($_GET['delete'])) {
-  $id = intval($_GET['delete']);
-  $adn = "DELETE FROM  rpos_products  WHERE  prod_id = ?";
+  $id = $_GET['delete'];
+  $adn = "DELETE FROM rpos_products WHERE prod_id = ?";
   $stmt = $mysqli->prepare($adn);
   $stmt->bind_param('s', $id);
   $stmt->execute();
@@ -47,7 +47,7 @@ require_once('partials/_head.php');
             <div class="card-header border-0">
               <a href="add_product.php" class="btn btn-outline-success">
                 <i class="fas fa-utensils"></i>
-                Add New Product
+                Add New Produit
               </a>
             </div>
             <div class="table-responsive">
@@ -55,8 +55,8 @@ require_once('partials/_head.php');
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">Product Code</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Produit Code</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Price</th>
                     <th scope="col">Actions</th>
                   </tr>
@@ -87,14 +87,14 @@ require_once('partials/_head.php');
                         <a href="products.php?delete=<?php echo $prod->prod_id; ?>">
                           <button class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i>
-                            Delete
+                            Supprimer
                           </button>
                         </a>
 
                         <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
                           <button class="btn btn-sm btn-primary">
                             <i class="fas fa-edit"></i>
-                            Update
+                            Modifier
                           </button>
                         </a>
                       </td>

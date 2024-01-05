@@ -60,7 +60,7 @@
 
                 type: "POST",
                 url: "customer_ajax.php",
-                data: 'custName=' + val,
+                data: 'custNom=' + val,
                 success: function(data) {
                     //alert(data);
                     $('#customerID').val(data);

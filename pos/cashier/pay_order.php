@@ -89,18 +89,18 @@ require_once('partials/_head.php');
                     <input type="text" name="pay_id" readonly value="<?php echo $payid;?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Payment Code</label>
+                    <label>Code de Paiement</label>
                     <input type="text" name="pay_code" value="<?php echo $mpesaCode; ?>" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                   <div class="col-md-6">
-                    <label>Amount ($)</label>
+                    <label>Montant ($)</label>
                     <input type="text" name="pay_amt" readonly value="<?php echo $total;?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Payment Method</label>
+                    <label>Méthode de Paiement</label>
                     <select class="form-control" name="pay_method">
                         <option selected>Cash</option>
                         <option>Paypal</option>

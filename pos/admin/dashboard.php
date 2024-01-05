@@ -126,9 +126,9 @@ require_once('partials/_analytics.php');
                 <thead class="thead-light">
                   <tr>
                     <th class="text-success" scope="col"><b>Code</b></th>
-                    <th scope="col"><b>Customer</b></th>
-                    <th class="text-success" scope="col"><b>Product</b></th>
-                    <th scope="col"><b>Unit Price</b></th>
+                    <th scope="col"><b>Client</b></th>
+                    <th class="text-success" scope="col"><b>Produit</b></th>
+                    <th scope="col"><b>Prix Unitaire</b></th>
                     <th class="text-success" scope="col"><b>Qty</b></th>
                     <th scope="col"><b>Total</b></th>
                     <th scop="col"><b>Status</b></th>
@@ -185,8 +185,8 @@ require_once('partials/_analytics.php');
                 <thead class="thead-light">
                   <tr>
                     <th class="text-success" scope="col"><b>Code</b></th>
-                    <th scope="col"><b>Amount</b></th>
-                    <th class='text-success' scope="col"><b>Order Code</b></th>
+                    <th scope="col"><b>Montant</b></th>
+                    <th class='text-success' scope="col"><b>Code De Paiement</b></th>
                   </tr>
                 </thead>
                 <tbody>

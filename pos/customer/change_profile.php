@@ -104,7 +104,7 @@ require_once('partials/_head.php');
         $stmt = $mysqli->prepare($ret);
         $stmt->execute();
         $res = $stmt->get_result();
-        while ($customer = $res->fetch_object()) {
+        while ($Client = $res->fetch_object()) {
         ?>
             <!-- Header -->
             <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover; background-position: center top;">
@@ -114,7 +114,7 @@ require_once('partials/_head.php');
                 <div class="container-fluid d-flex align-items-center">
                     <div class="row">
                         <div class="col-lg-7 col-md-10">
-                            <h1 class="display-2 text-white">Hello <?php echo $customer->customer_name; ?></h1>
+                            <h1 class="display-2 text-white">Hello <?php echo $Client->customer_name; ?></h1>
                             <p class="text-white mt-0 mb-5">This is your profile page. You can customize your profile as you want And also change password too</p>
                         </div>
                     </div>
@@ -153,13 +153,13 @@ require_once('partials/_head.php');
                                 </div>
                                 <div class="text-center">
                                     <h3>
-                                        <?php echo $customer->customer_name; ?></span>
+                                        <?php echo $Client->customer_name; ?></span>
                                     </h3>
                                     <div class="h5 font-weight-300">
-                                        <i class="fas fa-envelope mr-2"></i><?php echo $customer->customer_email; ?>
+                                        <i class="fas fa-envelope mr-2"></i><?php echo $Client->customer_email; ?>
                                     </div>
                                     <div class="h5 font-weight-300">
-                                        <i class="fas fa-phone mr-2"></i><?php echo $customer->customer_phoneno; ?>
+                                        <i class="fas fa-phone mr-2"></i><?php echo $Client->customer_phoneno; ?>
                                     </div>
                                 </div>
                             </div>
@@ -183,20 +183,20 @@ require_once('partials/_head.php');
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-username">Full Name</label>
-                                                    <input type="text" name="customer_name" value="<?php echo $customer->customer_name; ?>" id="input-username" class="form-control form-control-alternative" ">
+                                                    <label class="form-control-label" for="input-username">Full Nom</label>
+                                                    <input type="text" name="customer_name" value="<?php echo $Client->customer_name; ?>" id="input-username" class="form-control form-control-alternative" ">
                                                 </div>
                                             </div>
                                             <div class=" col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-email">Phone Number</label>
-                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phone" class="form-control form-control-alternative">
+                                                    <input type="text" id="input-email" value="<?php echo $Client->customer_phoneno; ?>" name="customer_phone" class="form-control form-control-alternative">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-email">Email address</label>
-                                                    <input type="email" id="input-email" value="<?php echo $customer->customer_email; ?>" name="customer_email" class="form-control form-control-alternative">
+                                                    <input type="email" id="input-email" value="<?php echo $Client->customer_email; ?>" name="customer_email" class="form-control form-control-alternative">
                                                 </div>
                                             </div>
                                         </div>

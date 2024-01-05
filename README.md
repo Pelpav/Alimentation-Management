@@ -10,9 +10,9 @@ Email : cashier@mail.com
 
 Password: 123456
 
-**Customer Login Details**
+**Client Login Details**
 
-Email : customer@mail.com
+Email : Client@mail.com
 
 Password: 123456
 
