@@ -6,7 +6,6 @@ include('config/code-generator.php');
 
 check_login();
 if (isset($_POST['addProduct'])) {
-
   //Prevent Posting Blank Values
   if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price'])) {
     $err = "Blank Values Not Accepted";
@@ -15,9 +14,10 @@ if (isset($_POST['addProduct'])) {
     $prod_code  = $_POST['prod_code'];
     $prod_name = $_POST['prod_name'];
     $prod_img = $_FILES['prod_img']['name'];
-    move_uploaded_file($_FILES["prod_img"]["tmp_name"], "../admin/assets/img/products/" . $_FILES["prod_img"]["name"]);
+    move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
+
 
     //Insert Captured information to a database table
     $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price ) VALUES(?,?,?,?,?,?)";
@@ -48,7 +48,7 @@ require_once('partials/_head.php');
     require_once('partials/_topnav.php');
     ?>
     <!-- Header -->
-    <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
+    <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
     <span class="mask bg-gradient-dark opacity-8"></span>
       <div class="container-fluid">
         <div class="header-body">
@@ -79,13 +79,13 @@ require_once('partials/_head.php');
                 </div>
                 <hr>
                 <div class="form-row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label>Produit Image</label>
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label>Produit Price</label>
-                    <input type="text" name="prod_price" class="form-control" value="">
+                    <input type="number" name="prod_price" class="form-control" value="">
                   </div>
                 </div>
                 <hr>

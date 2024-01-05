@@ -14,7 +14,7 @@ if (isset($_POST['UpdateProduct'])) {
     $prod_code  = $_POST['prod_code'];
     $prod_name = $_POST['prod_name'];
     $prod_img = $_FILES['prod_img']['name'];
-    move_uploaded_file($_FILES["prod_img"]["tmp_name"], "../admin/assets/img/products/" . $_FILES["prod_img"]["name"]);
+    move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
 
@@ -53,7 +53,7 @@ require_once('partials/_head.php');
     while ($prod = $res->fetch_object()) {
     ?>
       <!-- Header -->
-      <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
+      <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
       <span class="mask bg-gradient-dark opacity-8"></span>
         <div class="container-fluid">
           <div class="header-body">
@@ -83,11 +83,11 @@ require_once('partials/_head.php');
                   </div>
                   <hr>
                   <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label>Produit Image</label>
                       <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="<?php echo $prod_img; ?>">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label>Produit Price</label>
                       <input type="text" name="prod_price" class="form-control" value="<?php echo $prod->prod_price; ?>">
                     </div>

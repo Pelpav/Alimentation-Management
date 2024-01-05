@@ -30,3 +30,11 @@ $stmt->execute();
 $stmt->bind_result($sales);
 $stmt->fetch();
 $stmt->close();
+
+//5. Staff
+$query = "SELECT COUNT(*) FROM `rpos_staff` ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($staff);
+$stmt->fetch();
+$stmt->close();

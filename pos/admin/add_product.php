@@ -18,11 +18,12 @@ if (isset($_POST['addProduct'])) {
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
 
+
     //Insert Captured information to a database table
     $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price ) VALUES(?,?,?,?,?,?)";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price);
+$rc = $postStmt->bind_param('ssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -78,13 +79,13 @@ require_once('partials/_head.php');
                 </div>
                 <hr>
                 <div class="form-row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label>Produit Image</label>
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label>Produit Price</label>
-                    <input type="text" name="prod_price" class="form-control" value="">
+                    <input type="number" name="prod_price" class="form-control" value="">
                   </div>
                 </div>
                 <hr>

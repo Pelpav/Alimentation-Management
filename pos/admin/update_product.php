@@ -22,7 +22,7 @@ if (isset($_POST['UpdateProduct'])) {
     $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =? WHERE prod_id = ?";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $update);
+    $rc = $postStmt->bind_param('sssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $update);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -83,11 +83,11 @@ require_once('partials/_head.php');
                   </div>
                   <hr>
                   <div class="form-row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label>Produit Image</label>
                       <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="<?php echo $prod_img; ?>">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label>Produit Price</label>
                       <input type="text" name="prod_price" class="form-control" value="<?php echo $prod->prod_price; ?>">
                     </div>
