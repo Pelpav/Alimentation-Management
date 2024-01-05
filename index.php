@@ -80,7 +80,7 @@
             text-transform: uppercase;
         }
 
-        .link>a:hover{
+        a:hover{
             color: white;
         }
 
