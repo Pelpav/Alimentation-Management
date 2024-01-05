@@ -28,7 +28,6 @@ if (isset($_POST['pay'])) {
 
     $postStmt = $mysqli->prepare($postQuery);
     $upStmt = $mysqli->prepare($upQry);
-    $stStmt = $mysqli->prepare($stQry);
     //bind paramaters
 
     $rc = $postStmt->bind_param('ssssss', $pay_id, $pay_code, $order_code, $customer_id, $pay_amt, $pay_method);

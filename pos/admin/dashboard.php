@@ -106,10 +106,10 @@ require_once('partials/_analytics.php');
       </div>
     </div>
 	  
-    <!-- Page content -->
+     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-32 mb-5 mb-xl-0">
+        <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -126,14 +126,14 @@ require_once('partials/_analytics.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-success" scope="col"><b>Code</b></th>
-                    <th scope="col"><b>Client</b></th>
-                    <th class="text-success" scope="col"><b>Produit</b></th>
-                    <th scope="col"><b>Prix Unitaire</b></th>
-                    <th class="text-success" scope="col"><b>Qty</b></th>
-                    <th scope="col"><b>Total</b></th>
-                    <th scop="col"><b>Status</b></th>
-                    <th class="text-success" scope="col"><b>Date</b></th>
+                    <th class="text-success" scope="col">Code</th>
+                    <th scope="col">Client</th>
+                    <th class="text-success" scope="col">Produit</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th class="text-success" scope="col">Qty</th>
+                    <th scope="col">Total</th>
+                    <th scop="col">Status</th>
+                    <th class="text-success" scope="col">Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -144,6 +144,7 @@ require_once('partials/_analytics.php');
                   $res = $stmt->get_result();
                   while ($order = $res->fetch_object()) {
                     $total = ($order->prod_price * $order->prod_qty);
+
                   ?>
                     <tr>
                       <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
@@ -168,7 +169,7 @@ require_once('partials/_analytics.php');
       </div>
 	
       <div class="row mt-5">
-        <div class="col-xl-32">
+        <div class="col-xl-12">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -185,9 +186,9 @@ require_once('partials/_analytics.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-success" scope="col"><b>Code</b></th>
-                    <th scope="col"><b>Montant</b></th>
-                    <th class='text-success' scope="col"><b>Code De Paiement</b></th>
+                    <th class="text-success" scope="col">Code</th>
+                    <th scope="col">Montant</th>
+                    <th class='text-success' scope="col">Code De Paiement</th>
                   </tr>
                 </thead>
                 <tbody>
