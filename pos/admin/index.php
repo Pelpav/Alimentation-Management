@@ -30,6 +30,8 @@ require_once('partials/_head.php');
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
               <h1 class="text-white">Système de Ventes de Produits</h1>
+                            <h3 class="text-white">Admin</h3>
+
             </div>
           </div>
         </div>
