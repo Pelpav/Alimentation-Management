@@ -1,8 +1,8 @@
 <?php
-$dbuser = "root";
-$dbpass = "";
+$dbuser = "tomglobalb";
+$dbpass = "3PbDyeAhNS";
 $host = "localhost";
-$db = "alimentation";
+$db = "tomglobalb_alimentation";
 
 // Connexion MySQLi
 $mysqli = new mysqli($host, $dbuser, $dbpass, $db);
