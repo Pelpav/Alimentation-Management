@@ -37,7 +37,7 @@ require_once('partials/_analytics.php');
                         <span class="h2 font-weight-bold mb-0">
                           <?php echo $products; ?>
                         </span>
-                      </div><!-- For more projects: Visit NetGO+  -->
+                      </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-purple text-white rounded-circle shadow">
                           <i class="fas fa-utensils"></i>
@@ -47,7 +47,7 @@ require_once('partials/_analytics.php');
                   </div>
                 </div>
               </a>
-            </div><!-- For more projects: Visit NetGO+  -->
+            </div>
             <div class="col-xl-4 col-lg-6">
               <a href="orders_reports.php">
                 <div class="card card-stats mb-4 mb-xl-0">
@@ -67,7 +67,7 @@ require_once('partials/_analytics.php');
                     </div>
                   </div>
                 </div>
-              </a><!-- For more projects: Visit NetGO+  -->
+              </a>
             </div>
             <div class="col-xl-4 col-lg-6">
               <a href="payments_reports.php">
@@ -89,7 +89,7 @@ require_once('partials/_analytics.php');
                         <div class="icon icon-shape bg-green text-white rounded-circle shadow">
                           <i class="fas fa-wallet"></i>
                         </div>
-                      </div><!-- For more projects: Visit NetGO+  -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ require_once('partials/_analytics.php');
             </div>
           </div>
         </div>
-      </div><!-- For more projects: Visit NetGO+  -->
+      </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--7">
@@ -118,27 +118,31 @@ require_once('partials/_analytics.php');
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
-                  <tr><!-- For more projects: Visit NetGO+  -->
+                  <tr>
                     <th class="text-success" scope="col">Code</th>
                     <th scope="col">Client</th>
                     <th class="text-success" scope="col">Produit</th>
-                    <th scope="col">Prix Unitaire</th>
-                    <th class="text-success" scope="col">#</th>
                     <th scope="col">Prix Total</th>
-                    <th scop="col">Status</th>
+                    <th scope="col">Status</th>
                     <th class="text-success" scope="col">Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   $identifiant_client = $_SESSION['identifiant_client'];
-                  $ret = "SELECT * FROM  commandes WHERE identifiant_client = '$identifiant_client' ORDER BY `commandes`.`creee_le` DESC LIMIT 10 ";
+                  $ret = "SELECT c.code_commande, cl.nom_client, GROUP_CONCAT(p.nom_produit SEPARATOR ', ') AS produits, 
+                          SUM(p.prix_produit * cp.quantite) AS prix_total, c.statut_commande, c.creee_le 
+                          FROM commandes c
+                          JOIN clients cl ON c.identifiant_client = cl.identifiant_client
+                          JOIN commande_produit cp ON c.identifiant_commande = cp.identifiant_commande
+                          JOIN produits p ON cp.identifiant_produit = p.identifiant_produit
+                          WHERE c.identifiant_client = '$identifiant_client'
+                          GROUP BY c.code_commande, cl.nom_client, c.statut_commande, c.creee_le
+                          ORDER BY c.creee_le DESC LIMIT 10";
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();
                   while ($order = $res->fetch_object()) {
-                    $total = ($order->prix_produit * $order->quantite_produit);
-
                   ?>
                     <tr>
                       <th class="text-success" scope="row">
@@ -148,26 +152,20 @@ require_once('partials/_analytics.php');
                         <?php echo $order->nom_client; ?>
                       </td>
                       <td class="text-success">
-                        <?php echo $order->nom_produit; ?>
+                        <?php echo $order->produits; ?>
                       </td>
                       <td>
-                        <?php echo $order->prix_produit; ?> FCFA
-                      </td>
-                      <td class="text-success">
-                        <?php echo $order->quantite_produit; ?>
-                      </td>
-                      <td>
-                        <?php echo $total; ?> FCFA
+                        <?php echo $order->prix_total; ?> FCFA
                       </td>
                       <td>
                         <?php if ($order->statut_commande == '') {
-                          echo "<span class='badge badge-danger'>Not Payé</span>";
+                          echo "<span class='badge badge-danger'>Non Payé</span>";
                         } else {
                           echo "<span class='badge badge-success'>$order->statut_commande</span>";
                         } ?>
                       </td>
                       <td class="text-success">
-                        <?php echo date('d/M/Y g:i', strtotime($order->creee_le)); ?>
+                        <?php echo strftime('%d %B %Y à %Hh%M', strtotime($order->creee_le)); ?>
                       </td>
                     </tr>
                   <?php } ?>
@@ -214,8 +212,7 @@ require_once('partials/_analytics.php');
                         <?php echo $payment->code_paiements; ?>
                       </th>
                       <td>
-                        $
-                        <?php echo $payment->montant_paiements; ?>
+                        <?php echo $payment->montant_paiements; ?> FCFA
                       </td>
                       <td class='text-success'>
                         <?php echo $payment->code_commande; ?>

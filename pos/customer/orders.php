@@ -4,7 +4,68 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 
+
+// Initialiser un tableau vide pour stocker les produits sélectionnés
+$selectedProducts = [];
+
+// Vérifier si le formulaire a été soumis
+if (isset($_POST['submit_order'])) {
+  // Parcourir les produits pour obtenir les quantités sélectionnées
+  foreach ($_POST['quantite_produit'] as $identifiant_produit => $quantite) {
+    // Vérifier si la quantité n'est pas vide ou nulle
+    // Vérifier si la quantité n'est pas vide ou nulle
+    if ($quantite > $prod->stock_produit) {
+      // Afficher un message d'erreur si la quantité demandée est supérieure au stock disponible
+      $err = "La quantité demandée pour le produit {$prod->nom_produit} dépasse le stock disponible.";
+      break;
+    } else if (!empty($quantite)) {
+      // Ajouter le produit et sa quantité au tableau des produits sélectionnés
+      $selectedProducts[$identifiant_produit] = $quantite;
+    }
+  }
+
+  // Vérifier s'il y a des produits sélectionnés
+  if (!empty($selectedProducts)) {
+    // Générer un identifiant de commande unique
+    $identifiant_commande = uniqid('cmd_');
+
+    // Insertion de la commande dans la table commandes
+    $insertOrderQuery = "INSERT INTO commandes (identifiant_commande, code_commande, identifiant_client, statut_commande) VALUES (?, ?, ?, ?)";
+    $insertOrderStmt = $mysqli->prepare($insertOrderQuery);
+    $code_commande = "CODE_" . strtoupper(uniqid());
+    $identifiant_client = $_SESSION['identifiant_client']; // Utiliser l'ID du client de la session
+    $statut_commande = "";
+    $insertOrderStmt->bind_param('ssss', $identifiant_commande, $code_commande, $identifiant_client, $statut_commande);
+    $insertOrderStmt->execute();
+
+    // Insertion des produits sélectionnés dans la table commande_produit
+    foreach ($selectedProducts as $identifiant_produit => $quantite) {
+      // Insérer chaque produit dans la table commande_produit
+      $insertQuery = "INSERT INTO commande_produit (identifiant_commande, identifiant_produit, quantite) VALUES (?, ?, ?)";
+      $insertStmt = $mysqli->prepare($insertQuery);
+      $insertStmt->bind_param('sss', $identifiant_commande, $identifiant_produit, $quantite);
+      $insertStmt->execute();
+      // Mettre à jour le stock du produit
+      $updateStockQuery = "UPDATE produits SET stock_produit = stock_produit - ? WHERE identifiant_produit = ?";
+      $updateStockStmt = $mysqli->prepare($updateStockQuery);
+      $updateStockStmt->bind_param('ii', $quantite, $identifiant_produit);
+      $updateStockStmt->execute();
+    }
+
+    // Afficher un message de succès
+    $success = "Commande validée avec succès !";
+
+    // Redirection vers la page de rapports des commandes
+    header("Location: orders_reports.php");
+    exit();
+  } else {
+    // Afficher un message d'erreur si aucun produit n'a été sélectionné
+    $err = "Une erreur s'est produite";
+  }
+}
+
 require_once('partials/_head.php');
+
 ?>
 
 <body>
@@ -36,52 +97,59 @@ require_once('partials/_head.php');
               Sélectionne un produit pour faire une commande
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $ret = "SELECT * FROM  produits  ORDER BY `produits`.`creee_le` DESC ";
-                  $stmt = $mysqli->prepare($ret);
-                  $stmt->execute();
-                  $res = $stmt->get_result();
-                  while ($prod = $res->fetch_object()) {
-                  ?>
+              <form method="post">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
                     <tr>
-                      <td>
-                        <?php
-                        if ($prod->image_produit) {
-                          echo "<img src='../../products/$prod->image_produit' height='60' width='60 class='img-thumbnail'>";
-                        } else {
-                          echo "<img src='../../products/default.jpg' height='60' width='60 class='img-thumbnail'>";
-                        }
-
-                        ?>
-                      </td>
-                      <td>
-                        <?php echo $prod->nom_produit; ?>
-                      </td>
-                      <td>
-                        <?php echo $prod->prix_produit; ?> FCFA
-                      </td>
-                      <td>
-                        <a href="make_oder.php?identifiant_produit=<?php echo $prod->identifiant_produit; ?>&nom_produit=<?php echo $prod->nom_produit; ?>&prix_produit=<?php echo $prod->prix_produit; ?>">
-                          <button class="btn btn-sm btn-warning">
-                            <i class="fas fa-cart-plus"></i>
-                            Faire une commande
-                          </button>
-                        </a>
-                      </td>
+                      <th scope="col">Image</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Prix</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col"><b></b></th>
+                      <th scope="col" id="quantiteth" style="display: none;"><b>Quantité</b></th>
                     </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $ret = "SELECT * FROM produits ORDER BY `produits`.`creee_le` DESC";
+                    $stmt = $mysqli->prepare($ret);
+                    $stmt->execute();
+                    $res = $stmt->get_result();
+                    while ($prod = $res->fetch_object()) {
+                      $checkboxId = "checkbox_" . $prod->identifiant_produit;
+                      $quantityId = "quantity_" . $prod->identifiant_produit;
+                    ?>
+                      <tr>
+                        <td>
+                          <?php
+                          if ($prod->image_produit) {
+                            echo "<img src='../../products/$prod->image_produit' height='60' width='60' class='img-thumbnail'>";
+                          } else {
+                            echo "<img src='../../products/default.jpg' height='60' width='60' class='img-thumbnail'>";
+                          }
+                          ?>
+                        </td>
+                        <td>
+                          <?php echo $prod->nom_produit; ?>
+                        </td>
+                        <td>
+                          <?php echo $prod->prix_produit; ?> FCFA
+                        </td>
+                        <td>
+                          <?php echo $prod->stock_produit; ?>
+                        </td>
+                        <td>
+                          <input type="checkbox" id="<?php echo $checkboxId; ?>" name="selected_products[]" value="<?php echo $prod->identifiant_produit; ?>" onclick="toggleQuantity('<?php echo $checkboxId; ?>', '<?php echo $quantityId; ?>')">
+                        </td>
+                        <td>
+                          <input type="number" id="<?php echo $quantityId; ?>" name="quantite_produit[<?php echo $prod->identifiant_produit; ?>]" class="form-control" style="display: none;">
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+                <button type="submit" name="submit_order" class="btn btn-success">Valider la commande</button>
+              </form>
             </div>
           </div>
         </div>
@@ -96,6 +164,23 @@ require_once('partials/_head.php');
   <?php
   require_once('partials/_scripts.php');
   ?>
+
+  <script>
+    function toggleQuantity(checkboxId, quantityId) {
+      var checkbox = document.getElementById(checkboxId);
+      var nav = document.getElementById('quantiteth');
+      var quantity = document.getElementById(quantityId);
+      if (checkbox.checked) {
+        quantity.style.display = 'block';
+        nav.style.display = 'block';
+      } else {
+        quantity.style.display = 'none';
+        nav.style.display = 'none';
+        quantity.value = ''; // Effacer la valeur du champ quantité lorsqu'il est masqué
+      }
+    }
+  </script>
+
 </body>
 
 </html>

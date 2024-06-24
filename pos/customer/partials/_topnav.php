@@ -12,7 +12,7 @@ while ($Client = $res->fetch_object()) {
                 <div class="container-fluid">
                     <!-- Brand -->
                     <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="dashboard.php">
-                        <?php echo $Client->nom_client; ?> Tableau de bord
+                    Tableau de bord de <?php echo $Client->nom_client; ?> 
                     </a>
                     <!-- Form -->
 

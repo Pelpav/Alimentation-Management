@@ -100,7 +100,7 @@ require_once('partials/_analytics.php');
                                                 <?php if ($sales) {
                                                     echo $sales;
                                                 } else {
-                                                    $sales =0;
+                                                    $sales = 0;
                                                     echo $sales;
                                                 } ?> FCFA
                                             </span>
@@ -142,8 +142,6 @@ require_once('partials/_analytics.php');
                                         <th class="text-success" scope="col">Code</th>
                                         <th scope="col">Client</th>
                                         <th class="text-success" scope="col">Produit</th>
-                                        <th scope="col">Prix Unitaire</th>
-                                        <th class="text-success" scope="col">Qté</th>
                                         <th scope="col">Total</th>
                                         <th scop="col">Status</th>
                                         <th class="text-success" scope="col">Date</th>
@@ -151,13 +149,18 @@ require_once('partials/_analytics.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM  commandes ORDER BY `commandes`.`creee_le` DESC LIMIT 7 ";
+                                    $ret = "SELECT c.code_commande, cl.nom_client, GROUP_CONCAT(p.nom_produit SEPARATOR ', ') AS produits, 
+                                    SUM(p.prix_produit * cp.quantite) AS prix_total, c.statut_commande, c.creee_le 
+                                    FROM commandes c
+                                    JOIN clients cl ON c.identifiant_client = cl.identifiant_client
+                                    JOIN commande_produit cp ON c.identifiant_commande = cp.identifiant_commande
+                                    JOIN produits p ON cp.identifiant_produit = p.identifiant_produit
+                                    GROUP BY c.code_commande, cl.nom_client, c.statut_commande, c.creee_le
+                                    ORDER BY c.creee_le DESC";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
-                                        $total = ($order->prix_produit * $order->quantite_produit);
-
                                     ?>
                                         <tr>
                                             <th class="text-success" scope="row">
@@ -167,16 +170,10 @@ require_once('partials/_analytics.php');
                                                 <?php echo $order->nom_client; ?>
                                             </td>
                                             <td class="text-success">
-                                                <?php echo $order->nom_produit; ?>
+                                                <?php echo $order->produits; ?>
                                             </td>
                                             <td>
-                                                <?php echo $order->prix_produit; ?> FCFA
-                                            </td>
-                                            <td class="text-success">
-                                                <?php echo $order->quantite_produit; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $total; ?> FCFA
+                                                <?php echo $order->prix_total; ?> FCFA
                                             </td>
                                             <td>
                                                 <?php if ($order->statut_commande == '') {
@@ -233,8 +230,8 @@ require_once('partials/_analytics.php');
                                                 <?php echo $payment->code_paiements; ?>
                                             </th>
                                             <td>
-                                                $
-                                                <?php echo $payment->montant_paiements; ?>
+                                                
+                                                <?php echo $payment->montant_paiements; ?> FCFA
                                             </td>
                                             <td class='text-success'>
                                                 <?php echo $payment->code_commande; ?>
