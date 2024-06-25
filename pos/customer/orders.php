@@ -13,7 +13,13 @@ if (isset($_POST['submit_order'])) {
   // Parcourir les produits pour obtenir les quantités sélectionnées
   foreach ($_POST['quantite_produit'] as $identifiant_produit => $quantite) {
     // Vérifier si la quantité n'est pas vide ou nulle
-    // Vérifier si la quantité n'est pas vide ou nulle
+    // Récupérer les informations du produit depuis la base de données
+    $query = "SELECT * FROM produits WHERE identifiant_produit = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param('i', $identifiant_produit);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $prod = $result->fetch_object();
     if ($quantite > $prod->stock_produit) {
       // Afficher un message d'erreur si la quantité demandée est supérieure au stock disponible
       $err = "La quantité demandée pour le produit {$prod->nom_produit} dépasse le stock disponible.";
@@ -48,7 +54,7 @@ if (isset($_POST['submit_order'])) {
       // Mettre à jour le stock du produit
       $updateStockQuery = "UPDATE produits SET stock_produit = stock_produit - ? WHERE identifiant_produit = ?";
       $updateStockStmt = $mysqli->prepare($updateStockQuery);
-      $updateStockStmt->bind_param('ii', $quantite, $identifiant_produit);
+      $updateStockStmt->bind_param('is', $quantite, $identifiant_produit);
       $updateStockStmt->execute();
     }
 
@@ -56,7 +62,7 @@ if (isset($_POST['submit_order'])) {
     $success = "Commande validée avec succès !";
 
     // Redirection vers la page de rapports des commandes
-    header("Location: orders_reports.php");
+    header("Location: payments.php");
     exit();
   } else {
     // Afficher un message d'erreur si aucun produit n'a été sélectionné

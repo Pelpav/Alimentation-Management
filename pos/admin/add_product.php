@@ -48,7 +48,7 @@ if (isset($_POST['addProduct'])) {
 
     //declare a varible which will be passed to alert function
     if ($postStmt) {
-      $success = "Produit Ajouté" && header("refresh:1; url=add_product.php");
+      $success = "Produit Ajouté";
     } else {
       $err = "Veuillez réessayer";
     }

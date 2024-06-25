@@ -70,7 +70,7 @@ if (isset($_POST['submit_order'])) {
             // Mettre à jour le stock du produit
             $updateStockQuery = "UPDATE produits SET stock_produit = stock_produit - ? WHERE identifiant_produit = ?";
             $updateStockStmt = $mysqli->prepare($updateStockQuery);
-            $updateStockStmt->bind_param('ii', $quantite, $identifiant_produit);
+            $updateStockStmt->bind_param('is', $quantite, $identifiant_produit);
             $updateStockStmt->execute();
         }
 
@@ -78,7 +78,7 @@ if (isset($_POST['submit_order'])) {
         $success = "Commande validée avec succès !";
 
         // Redirection vers la page de rapports des commandes
-        header("Location: orders_reports.php");
+        header("Location: payments.php");
         exit();
     } else if (empty($selectedProducts)) {
         // Afficher un message d'erreur si aucun produit n'a été sélectionné

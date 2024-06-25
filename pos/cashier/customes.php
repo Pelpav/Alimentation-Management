@@ -3,20 +3,7 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
-//Supprimer Staff
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $adn = "DELETE FROM  clients  WHERE  identifiant_client = ?";
-    $stmt = $mysqli->prepare($adn);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $stmt->close();
-    if ($stmt) {
-        $success = "Supprimé" && header("refresh:1; url=customes.php");
-    } else {
-        $err = "Réessayer plus tard";
-    }
-}
+
 require_once('partials/_head.php');
 ?>
 
@@ -50,6 +37,10 @@ require_once('partials/_head.php');
                                 <i class="fas fa-user-plus"></i>
                                 Ajouter nouveau client
                             </a>
+                            <label for="showIncomplete">
+                                <input type="checkbox" id="showIncomplete" onclick="toggleIncompleteClients()">
+                                Afficher les clients avec des champs manquants
+                            </label>
                         </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
@@ -61,15 +52,16 @@ require_once('partials/_head.php');
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="clientTableBody">
                                     <?php
                                     $ret = "SELECT * FROM  clients  ORDER BY `clients`.`creee_le` DESC ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($cust = $res->fetch_object()) {
+                                        $incompleteClass = empty($cust->email_client) ? 'incomplete' : '';
                                     ?>
-                                        <tr>
+                                        <tr class="<?php echo $incompleteClass; ?>" style="<?php echo empty($cust->email_client) ? 'display: none;' : ''; ?>">
                                             <td>
                                                 <?php echo $cust->nom_client; ?>
                                             </td>
@@ -81,15 +73,8 @@ require_once('partials/_head.php');
                                             </td>
                                             <td>
                                                 <a href="orders.php?client_id=<?php echo $cust->identifiant_client; ?>" class="btn btn-sm btn-success">
-                                                    <i class="fas fa-cart-plus"></i> 
+                                                    <i class="fas fa-cart-plus"></i>
                                                     Ajouter une commande
-                                                </a>
-
-                                                <a href="customes.php?delete=<?php echo $cust->identifiant_client; ?>">
-                                                    <button class="btn btn-sm btn-danger">
-                                                        <i class="fas fa-trash"></i>
-                                                        Supprimer
-                                                    </button>
                                                 </a>
 
                                                 <a href="update_customer.php?update=<?php echo $cust->identifiant_client; ?>">
@@ -117,6 +102,16 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_scripts.php');
     ?>
+
+    <script>
+        function toggleIncompleteClients() {
+            var checkbox = document.getElementById('showIncomplete');
+            var rows = document.querySelectorAll('#clientTableBody tr.incomplete');
+            rows.forEach(function(row) {
+                row.style.display = checkbox.checked ? 'table-row' : 'none';
+            });
+        }
+    </script>
 </body>
 
 </html>

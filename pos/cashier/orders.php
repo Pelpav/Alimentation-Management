@@ -78,7 +78,7 @@ if (isset($_POST['submit_order'])) {
         $success = "Commande validée avec succès !";
 
         // Redirection vers la page de rapports des commandes
-        header("Location: orders_reports.php");
+        header("Location: payments.php");
         exit();
     } else if (empty($selectedProducts)) {
         // Afficher un message d'erreur si aucun produit n'a été sélectionné
